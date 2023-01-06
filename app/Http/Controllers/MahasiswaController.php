@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\MahasiswaRequest;
 
 class MahasiswaController extends Controller
@@ -11,7 +12,8 @@ class MahasiswaController extends Controller
     
     public function index()
     {
-        $mahasiswas = Mahasiswa::paginate(100);
+        $mahasiswas = Mahasiswa::groupBy('gender')->paginate();
+        // dd($mahasiswas);
         return view('mahasiswa.index', [
             'mahasiswas' => $mahasiswas
         ]);

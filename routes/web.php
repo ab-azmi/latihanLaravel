@@ -17,17 +17,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return to_route('mahasiswas.index');
+    return view('home');
 });
 
-Route::controller(ItemController::class)->group(function(){
-    Route::get('items', 'index')->name('items.index');
-    Route::get('items/create', 'create')->name('items.create');
-    Route::post('items/store', 'store')->name('items.store');
-    Route::get('items/edit/{item}', 'edit')->name('items.edit');
-    Route::patch('items/update/{item}', 'update')->name('items.update');
-    Route::delete('items/delete/{item}', 'delete')->name('items.delete');
+Route::middleware('auth')->group(function () {
+
+    Route::controller(ItemController::class)->group(function () {
+        Route::get('items', 'index')->name('items.index');
+        Route::get('items/create', 'create')->name('items.create');
+        Route::post('items/store', 'store')->name('items.store');
+        Route::get('items/edit/{item}', 'edit')->name('items.edit');
+        Route::patch('items/update/{item}', 'update')->name('items.update');
+        Route::delete('items/delete/{item}', 'delete')->name('items.delete');
+        Route::get('items/export', 'exportXlsx')->name('items.export');
+        Route::get('items/export-pdf', 'exportPdf')->name('items.export-pdf');
+    });
+
+    Route::resource('mahasiswas', MahasiswaController::class);
+
+    Route::resource('types', ItemTypeController::class);
 });
 
-Route::resource('mahasiswas', MahasiswaController::class);
-Route::resource('types', ItemTypeController::class);
+
+Auth::routes();
+
+Route::get('/kuda-merah', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -14,7 +14,7 @@
 
         <div class=" bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
 
-            <form autocomplete="off" class="space-y-4" action="{{ route('items.store') }}" method="POST">
+            <form autocomplete="off" class="space-y-4" action="{{ route('types.store') }}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="rounded-md shadow-sm -space-y-px">
@@ -25,17 +25,7 @@
                                 class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
-                        <div class="col-span-12">
-                            <label for="email_address" class="block text-sm font-medium text-gray-700">Quantity</label>
-                            <input type="number" name="quantity" id="email_address" autocomplete="email"
-                                class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
-
-                        <div class="col-span-12">
-                            <label for="email_address" class="block text-sm font-medium text-gray-700">Price</label>
-                            <input type="number" name="price" id="email_address" autocomplete="email"
-                                class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
+                       
                     </div>
                 </div>
 

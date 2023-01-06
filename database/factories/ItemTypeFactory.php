@@ -17,7 +17,7 @@ class ItemTypeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->firstNameFemale()
+            'name' => $this->faker->country()
         ];
     }
 }

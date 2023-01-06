@@ -31,20 +31,20 @@
                         @foreach ($types as $index=>$type)
                         <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-gray-50' }} border-b">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{ $index + $types->firstItem() }}
+                                
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $type->name }}
                             </td>
                             <td class="flex gap-5 text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('types.destroy', $type) }}" method="post">
+                                <form action="{{ route('types.destroy', $type->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
-                                <a href="{{ route('types.edit', $type) }}">
+                                <a href="{{ route('types.edit', $type->id) }}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             </td>
@@ -57,5 +57,5 @@
         </div>
     </div>
 </div>
-{{ $types->links() }}
+
 @endsection

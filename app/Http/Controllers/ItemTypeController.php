@@ -3,67 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemType;
-use App\Http\Requests\StoreItemTypeRequest;
-use App\Http\Requests\UpdateItemTypeRequest;
+use Illuminate\Http\Request;
 
 class ItemTypeController extends Controller
 {
     
     public function index()
     {
-        $types = ItemType::latest()->simplePaginate(50);
-        return view('types.index', [
-            'types' => $types
-        ]);
+        $types = ItemType::all();
+        return view('types.index', compact('types'));
     }
 
-    
     public function create()
     {
         return view('types.create');
     }
 
-   
-    public function store(StoreItemTypeRequest $request)
+    
+    public function store(Request $request)
     {
-        $validated = $request->validate();
-        $i = ItemType::create($validated);
-        if($i){
-            return back();
-        }
+        ItemType::create($request->all());
 
-        return to_route('types.index');
+        return to_route('types.index');    
     }
 
-    public function show(ItemType $itemType)
+    
+    public function show($id)
     {
         //
     }
 
-  
-    public function edit(ItemType $type)
+   
+    public function edit($id)
     {
-        return view('items.edit', $type);
+        $type = ItemType::findOrFail($id);
+        return view('types.edit', compact('type'));
     }
 
-    public function update(UpdateItemTypeRequest $request, ItemType $itemType)
+    
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate();
-        $u = $itemType->update($validated);
-        if($u){
-            return back();
-        }
+        $type = ItemType::findOrFail($id);
+        $type->update($request->all());
+
         return to_route('types.index');
     }
 
-   
-    public function destroy(ItemType $type)
+    
+    public function destroy($id)
     {
-        $d = $type->delete();
+        $type = ItemType::findOrFail($id);
+        $type->delete();
 
-        if($d){
-            return back();
-        }
         return to_route('types.index');
     }
 }

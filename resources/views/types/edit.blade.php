@@ -14,28 +14,17 @@
 
         <div class=" bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
 
-            <form autocomplete="off" class="space-y-4" action="{{ route('items.update', $item) }}" method="POST">
+            <form autocomplete="off" class="space-y-4" action="{{ route('types.update', $type->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div class="grid gap-6">
                         <div class="col-span-12">
                             <label for="first_name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <input value="{{ $item->name }}" type="text" name="name" id="first_name" autocomplete="given-name"
+                            <input value="{{ $type->name }}" type="text" name="name" id="first_name" autocomplete="given-name"
                                 class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
-                        <div class="col-span-12">
-                            <label for="email_address" class="block text-sm font-medium text-gray-700">Quantity</label>
-                            <input value="{{ $item->quantity }}" type="number" name="quantity" id="email_address" autocomplete="email"
-                                class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
-
-                        <div class="col-span-12">
-                            <label for="email_address" class="block text-sm font-medium text-gray-700">Price</label>
-                            <input value="{{ $item->price }}" type="number" name="price" id="email_address" autocomplete="email"
-                                class="mt-1 px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
                     </div>
                 </div>
 
